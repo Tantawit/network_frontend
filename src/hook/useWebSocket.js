@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import useTimeout from "./useTimeout";
 
-export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
+export const useStepWebSocket = ({ wsURL }) => {
   const MAX_RECONNECT_ATTEMPTS = 5;
   const [connectionState, setConnectionState] = useState("uninstantiated");
   const [reconnectAttempt, setReconnectAttempt] = useState(0);
@@ -13,7 +13,7 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
   const message = [];
 
   const initWebsocket = () => {
-    if (!user || initializingRef.current) {
+    if (initializingRef.current) {
       return;
     }
 
@@ -31,13 +31,6 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
           reconnect();
         }, 30000)
       );
-
-      const token = await getAccessToken();
-      if (!token) {
-        setConnectionState("stop-retry");
-        ws.close();
-        return;
-      }
 
       const loginMessage = {
         username,
@@ -64,8 +57,10 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
           case 4:
             console.debug(`receive message ${data.message}`);
             message.push(data.message);
+            break;
           case 5:
             console.error(data);
+            break;
           default:
             console.error(data);
         }
