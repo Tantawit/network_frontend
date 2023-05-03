@@ -7,34 +7,39 @@ import Row from "react-bootstrap/Row";
 import styles from "./Login.module.scss";
 import LoginService from "../services/Login";
 
-function LoginPage() {
-  const [username, setUsername] = useState("");
+function SendmessagePage() {
+  const [messageSend, setMessageSend] = useState("");
+  const [sendTo, setSendTo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    LoginService.login(username);
-    window.location.reload(false);
-    console.log(username, "Submit");
+    console.log(messageSend, sendTo, "Send");
   };
   return (
     <div className={`${styles["login-page"]}`}>
       <div className={`${styles["login-container"]}`}>
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Send Message To</Form.Label>
         <Form.Control
           type="text"
           className={`${styles["login-text-box"]}`}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setMessageSend(e.target.value)}
+        />
+        <Form.Label>Message Content</Form.Label>
+        <Form.Control
+          type="text"
+          className={`${styles["login-text-box"]}`}
+          onChange={(e) => setSendTo(e.target.value)}
         />
         <Button
           variant="dark"
           className={`${styles["login-button"]}`}
           onClick={handleSubmit}
         >
-          Change Username
+          Send
         </Button>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default SendmessagePage;

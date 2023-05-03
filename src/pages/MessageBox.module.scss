@@ -1,0 +1,23 @@
+.message-page {
+  display: flex;
+  justify-content: center;
+
+  .message-container {
+    margin: 5em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .login-button {
+    margin: 1em;
+  }
+  .login-text-box {
+    width: 20em;
+  }
+  .message-area {
+    min-width: 20em;
+    min-height: 10em;
+  }
+}

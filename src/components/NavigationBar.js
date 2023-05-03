@@ -3,6 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import FerlunLogo from "../images/ferlun-logo.png";
 import styles from "./NavigationBar.module.scss";
 import { Link } from "react-router-dom";
+import { LocalStorageKey } from "../config/localStorageKey";
 
 const NavigationBar = () => {
   return (
@@ -18,7 +19,9 @@ const NavigationBar = () => {
               />
             </Link>
           </Navbar.Brand>
-          <a className={`${styles["project-name"]}`}>Network Group 35</a>
+          <a className={`${styles["project-name"]}`}>
+            {localStorage.getItem(LocalStorageKey.username)}
+          </a>
         </Container>
       </Navbar>
     </div>
