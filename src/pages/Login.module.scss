@@ -1,0 +1,15 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+
+  .login-container {
+    margin: 5em;
+    padding: 2em;
+  }
+  .login-button {
+    margin: 1em;
+  }
+  .login-text-box {
+    width: 20em;
+  }
+}
