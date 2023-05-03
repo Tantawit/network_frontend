@@ -1,5 +1,3 @@
-export const serverURL = "localhost:3001";
-
 export const ChatWebSocketType = {
   ChatWebSocketUnknownType: 0,
   ChatWebSocketLogin: 1,

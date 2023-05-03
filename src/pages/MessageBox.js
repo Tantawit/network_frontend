@@ -8,13 +8,13 @@ import styles from "./MessageBox.module.scss";
 import LoginService from "../services/Login";
 
 function MessageBoxPage() {
-  const [messageGet, setMessageGet] = useState("");
+  const [messageGet, setMessageGet] = useState("No message.");
 
   return (
     <div className={`${styles["message-page"]}`}>
       <div className={`${styles["message-container"]}`}>
         <Form.Label>Message Box</Form.Label>
-        <textarea className={`${styles["message-area"]}`}>
+        <textarea readOnly className={`${styles["message-area"]}`}>
           {messageGet}
         </textarea>
       </div>
