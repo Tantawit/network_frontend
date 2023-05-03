@@ -7,8 +7,11 @@ import Row from "react-bootstrap/Row";
 import styles from "./MessageBox.module.scss";
 import LoginService from "../services/Login";
 
-function MessageBoxPage() {
+function MessageBoxPage({ messageList }) {
   const [messageGet, setMessageGet] = useState("No message.");
+  if (messageList.length > 0) {
+    setMessageGet(messageList[messageList.length - 1]);
+  }
 
   return (
     <div className={`${styles["message-page"]}`}>

@@ -7,13 +7,18 @@ import Row from "react-bootstrap/Row";
 import styles from "./Login.module.scss";
 import LoginService from "../services/Login";
 
-function SendmessagePage() {
+function SendmessagePage({ sendJsonMessage }) {
   const [messageSend, setMessageSend] = useState("");
   const [sendTo, setSendTo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(messageSend, sendTo, "Send");
+    sendJsonMessage({
+      type: 2,
+      message: messageSend,
+      targets: [sendTo],
+    });
   };
   return (
     <div className={`${styles["login-page"]}`}>

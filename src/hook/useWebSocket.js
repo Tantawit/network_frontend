@@ -10,7 +10,7 @@ export const useStepWebSocket = ({ wsURL }) => {
   const websocket = useRef(null);
   const initializingRef = useRef(false);
   const username = localStorage.getItem("username");
-  const message = [];
+  const messageList = [];
 
   const initWebsocket = () => {
     if (initializingRef.current) {
@@ -56,7 +56,7 @@ export const useStepWebSocket = ({ wsURL }) => {
             return;
           case 4:
             console.debug(`receive message ${data.message}`);
-            message.push(data.message);
+            messageList.push(data.message);
             break;
           case 5:
             console.error(data);
@@ -123,5 +123,6 @@ export const useStepWebSocket = ({ wsURL }) => {
     sendJsonMessage,
     getWebSocket,
     initWebsocket,
+    messageList,
   };
 };
