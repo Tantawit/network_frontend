@@ -13,7 +13,7 @@ export const useStepWebSocket = ({ wsURL }) => {
   const messageList = [];
 
   const initWebsocket = () => {
-    if (initializingRef.current) {
+    if (initializingRef.current || !username) {
       return;
     }
 
