@@ -9,6 +9,7 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
   const [setConnectionTimeout, stopConnectionTimeout] = useTimeout();
   const websocket = useRef(null);
   const initializingRef = useRef(false);
+  const username = localStorage.getItem("username");
   const message = [];
 
   const initWebsocket = () => {
@@ -40,7 +41,6 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
 
       const loginMessage = {
         username,
-        version,
       };
 
       setConnectionState("connecting");
@@ -62,8 +62,10 @@ export const useStepWebSocket = ({ wsURL, version, getAccessToken, user }) => {
             }
             return;
           case 4:
+            console.debug(`receive message ${data.message}`);
+            message.push(data.message);
           case 5:
-            console.error(data.message);
+            console.error(data);
           default:
             console.error(data);
         }
